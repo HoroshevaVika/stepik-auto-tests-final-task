@@ -2,6 +2,7 @@ from .base_page import BasePage
 from .locators import ProductPageLocators
 from selenium.common.exceptions import NoAlertPresentException # в начале файла
 import math
+import time
 
 class ProductPage(BasePage):
 
@@ -53,4 +54,11 @@ class ProductPage(BasePage):
         # print(f"book_price_in_msg: {book_price_in_msg}")
         # print(book_price_in_msg.find(book_price))
 
+    def should_not_be_success_message(self):
+        # print(f"success_msg: {success_msg}")
+        assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE) == False, \
+        "Success message is presented, but should not be"
 
+    def success_message_sould_dissapeared(self):
+        assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE) == True, \
+        "Success message is not dissapeared, but should be"
