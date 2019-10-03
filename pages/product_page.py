@@ -4,6 +4,7 @@ from selenium.common.exceptions import NoAlertPresentException # в начале
 import math
 import time
 
+
 class ProductPage(BasePage):
 
     def add_product_to_basket(self):
@@ -40,8 +41,6 @@ class ProductPage(BasePage):
         self.book_name = book_name
         book_name_in_basket = self.browser.find_element(*ProductPageLocators.BOOK_NAME_IN_BASKET).get_attribute('textContent')
         assert book_name == book_name_in_basket, "Book name in basket is not correct!"
-        # print(f"book name: {book_name}")
-        # print(f"book name in basket: {book_name_in_basket}")
 
     def compare_price_in_basket_and_in_cataloge(self, book_price):
         self.book_price = book_price
@@ -49,16 +48,11 @@ class ProductPage(BasePage):
         book_price_in_msg = self.browser.find_element(*ProductPageLocators.BOOK_PRICE_IN_MSG).text
         assert baskets_price == book_price, "Price in baskets is incorrect"
         assert book_price_in_msg.find(book_price) != -1, "No book price in message!"
-        # print(f"book_price: {book_price}")
-        # print(f"baskets_price: {baskets_price}")
-        # print(f"book_price_in_msg: {book_price_in_msg}")
-        # print(book_price_in_msg.find(book_price))
 
     def should_not_be_success_message(self):
-        # print(f"success_msg: {success_msg}")
         assert self.is_element_present(*ProductPageLocators.SUCCESS_MESSAGE) == False, \
-        "Success message is presented, but should not be"
+            "Success message is presented, but should not be"
 
     def success_message_sould_dissapeared(self):
         assert self.is_disappeared(*ProductPageLocators.SUCCESS_MESSAGE) == True, \
-        "Success message is not dissapeared, but should be"
+            "Success message is not dissapeared, but should be"
