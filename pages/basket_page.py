@@ -1,6 +1,7 @@
 from .base_page import BasePage
 from .locators import BasketPageLocators
 
+
 class BasketPage(BasePage):
 
     def sould_be_empty_baskets_message(self):
@@ -11,4 +12,5 @@ class BasketPage(BasePage):
 
     def sould_not_be_items_in_basket(self):
         assert self.is_not_element_present(*BasketPageLocators.BASKET_ITEMS) == True,\
-        "Items in basket are presented, but should not be"
+            "Items in basket are presented, but should not be"
+
